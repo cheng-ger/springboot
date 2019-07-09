@@ -7,6 +7,7 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
+//@SpringBootApplication(exclude = SecurityAutoConfiguration.class)
 @SpringBootApplication(exclude={org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration.class, org.activiti.spring.boot.SecurityAutoConfiguration.class})//未集成权限 activiti
 @MapperScan("com.cyl.it.practice.dao")
 @EnableAsync  //开启异步功能  可以与spring—cloud一致

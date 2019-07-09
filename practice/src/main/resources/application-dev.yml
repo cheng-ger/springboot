@@ -32,7 +32,11 @@ spring:
     port: 6379
     database: 0
   activiti:
-    check-process-definitions: false
+    check-process-definitions: true #自动检查、部署流程定义文件
+#    database-schema-update: true #自动更新数据库结构
+    #流程定义文件存放目录
+    process-definition-location-prefix: classpath:/processes/
+    #process-definition-location-suffixes: #流程文件格式
   devtools:
     restart:
       enabled: true
