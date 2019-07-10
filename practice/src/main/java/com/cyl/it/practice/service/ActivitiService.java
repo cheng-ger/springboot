@@ -1,5 +1,6 @@
 package com.cyl.it.practice.service;
 
+import com.cyl.it.practice.vo.VacationVO;
 import org.activiti.engine.task.Task;
 
 import java.util.List;
@@ -29,4 +30,27 @@ public interface ActivitiService {
 
     //审批
     void completeTask(String taskId );
+
+
+    //换一个vacation的流程
+    List<String> approvalVacationUserName();
+
+    //开始一个vacation流程 apply人提交
+    Object startVac(VacationVO vac);
+
+    //查询我发起的流程
+    Object startMyVacByMe(String userName);
+
+    //根据用户查询待办任务列表
+    Object myVac(String userName);
+
+    //查询已完成任务列表
+    Object myFinishTaskVac(String userName);
+
+
+    //审批vacation approval
+    Object approvalVacation(String taskId, String userName, String msg);
+
+    //根据流程Id 获取其执行到哪里或历史
+    Object queryProcessByInstanceId(String processInstanceId);
 }
