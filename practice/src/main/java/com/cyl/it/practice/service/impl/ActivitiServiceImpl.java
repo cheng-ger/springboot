@@ -77,6 +77,7 @@ public class ActivitiServiceImpl implements ActivitiService {
     @Override
     public Object startVac(VacationVO vac) {
         //Authentication.setAuthenticatedUserId(userId);
+        // 设置流程的发起人
         identityService.setAuthenticatedUserId(vac.getApplyUser());
         // 开始流程
         ProcessInstance vacationInstance  = runtimeService.startProcessInstanceByKey(PROCESS_VACATION);
