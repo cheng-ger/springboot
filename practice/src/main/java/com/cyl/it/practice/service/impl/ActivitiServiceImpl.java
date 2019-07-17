@@ -28,6 +28,7 @@ public class ActivitiServiceImpl implements ActivitiService {
     private static final String PROCESS_VACATION = "vacation";
     private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
+
     @Autowired
     private RuntimeService runtimeService;
 
