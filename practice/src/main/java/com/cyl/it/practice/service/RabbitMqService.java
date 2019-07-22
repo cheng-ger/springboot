@@ -16,5 +16,7 @@ public interface RabbitMqService {
 
     void userDemoListMsg();
 
+    void aTest(String msg);
+
 
 }
