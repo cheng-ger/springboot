@@ -16,6 +16,8 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 public class PracticeApplication {
 
     public static void main(String[] args) {
+        //解决异常: availableProcessors is already set to [4], rejecting [4]
+        System.setProperty("es.set.netty.runtime.available.processors", "false");
         SpringApplication.run(PracticeApplication.class, args);
     }
 

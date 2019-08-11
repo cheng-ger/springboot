@@ -1,16 +1,16 @@
 package com.cyl.it.practice.message;
 
-import com.rabbitmq.client.Channel;
+/*import com.rabbitmq.client.Channel;
 import lombok.SneakyThrows;
+import org.springframework.amqp.core.ExchangeTypes;*/
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.amqp.core.ExchangeTypes;
 import org.springframework.amqp.rabbit.annotation.*;
-import org.springframework.messaging.handler.annotation.Header;
+/*import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.messaging.handler.annotation.Headers;
-import org.springframework.messaging.handler.annotation.Payload;
+import org.springframework.messaging.handler.annotation.Payload;*/
 import org.springframework.stereotype.Component;
 
-import java.util.Map;
+//import java.util.Map;
 
 /**
  * @author chengyuanliang
@@ -24,7 +24,7 @@ import java.util.Map;
 public class RabbitMQListing {
 
 
-    /**
+   /* *//**
      * 申明一个队列，如果这个队列不存在，将会被创建
      * @param queue 队列名称
      * @param durable 持久性：true队列会再重启过后存在，但是其中的消息不会存在。
@@ -33,10 +33,10 @@ public class RabbitMQListing {
      * @param arguments 队列的其他属性(构造参数)
      * @return Queue.DeclareOk：宣告队列的声明确认方法已成功声明。
      * @throws java.io.IOException if an error is encountered
-     */
+     *//*
 
 
-    /**
+    *//**
     * 声明一个 exchange.
     * @param exchange 名称
     * @param type  exchange type：direct、fanout、topic、headers
@@ -45,16 +45,16 @@ public class RabbitMQListing {
     * @param arguments 队列的其他属性(构造参数)
     * @return 成功地声明了一个声明确认方法来指示交换。
     * @throws java.io.IOException if an error is encountered
-    */
+    *//*
 
-    /**
+    *//**
      * 可以直接通过注解声明交换器、绑定、队列。但是如果声明的和rabbitMq中已经存在的不一致的话
      * 会报错便于测试，我这里都是不使用持久化，没有消费者之后自动删除
      * {@link RabbitListener}是可以重复的。并且声明队列绑定的key也可以有多个.
      *
      * @param headers
      * @param msg
-     */
+     *//*
     @RabbitListener(
             bindings = @QueueBinding(
                     exchange = @Exchange(value = "defaultExchange", type = ExchangeTypes.TOPIC,
@@ -72,12 +72,12 @@ public class RabbitMQListing {
         log.info("basic consumer receive message:{headers = [" + headers + "], msg = [" + msg + "]}");
     }
 
-    /**
+    *//**
      * {@link Queue#ignoreDeclarationExceptions}声明队列会忽略错误不声明队列，这个消费者仍然是可用的
      *
      * @param headers
      * @param msg
-     */
+     *//*
     @RabbitListener(queuesToDeclare = @Queue(value = "defaultQueue", ignoreDeclarationExceptions ="true"))
     public void process2(@Headers Map<String, Object> headers, @Payload String msg) {
         log.info("basic2 consumer receive message:{headers = [" + headers + "], msg = [" + msg + "]}");
@@ -85,13 +85,13 @@ public class RabbitMQListing {
 
 
     //消费者确认模式
-   /* @RabbitListener(bindings = @QueueBinding(
+   *//* @RabbitListener(bindings = @QueueBinding(
             exchange = @Exchange(value = RabbitMQConstant.CONFIRM_EXCHANGE, type = ExchangeTypes.TOPIC,
                     durable = RabbitMQConstant.FALSE_CONSTANT, autoDelete = RabbitMQConstant.true_CONSTANT),
             value = @Queue(value = RabbitMQConstant.CONFIRM_QUEUE, durable = RabbitMQConstant.FALSE_CONSTANT,
                     autoDelete = RabbitMQConstant.true_CONSTANT),
             key = RabbitMQConstant.CONFIRM_KEY),
-            containerFactory = "containerWithConfirm")*/
+            containerFactory = "containerWithConfirm")*//*
     @SneakyThrows
     @RabbitListener(bindings = @QueueBinding(
             exchange = @Exchange(value = "CONFIRM_EXCHANGE", type = ExchangeTypes.TOPIC,
@@ -116,24 +116,24 @@ public class RabbitMQListing {
     }
 
      //异常重试机制
-    /*spring:
+    *//*spring:
     rabbitmq:
     listener:
     retry:
             #    重试次数
     max-attempts: 3
             #   开启重试机制
-    enabled: true*/
+    enabled: true*//*
 
 
-    /*关于消息进入死信的规则：
+    *//*关于消息进入死信的规则：
 
     消息被拒绝(basic.reject/basic.nack)并且requeue=false
     消息TTL过期
-    队列达到最大长度;*/
+    队列达到最大长度;*//*
     //死信队列其实就是普通的队列，只不过一个队列声明的时候指定的属性，会将死信转发到该交换器中
     //其实也就只是在声明的时候多加了两个参数x-dead-letter-exchange和x-dead-letter-routing-key
-   /* @RabbitListener(
+   *//* @RabbitListener(
             bindings = @QueueBinding(
                     exchange = @Exchange(value = RabbitMQConstant.DEFAULT_EXCHANGE, type = ExchangeTypes.TOPIC,
                             durable = RabbitMQConstant.FALSE_CONSTANT, autoDelete = RabbitMQConstant.true_CONSTANT),
@@ -143,7 +143,7 @@ public class RabbitMQListing {
                             @Argument(name = RabbitMQConstant.DEAD_LETTER_KEY, value = RabbitMQConstant.DEAD_KEY)
                     }),
                     key = RabbitMQConstant.DEFAULT_KEY
-            ))*/
+            ))*//*
     @RabbitListener(
             bindings = @QueueBinding(
                     exchange = @Exchange(value = "DEFAULT_EXCHANGE_A", type = ExchangeTypes.TOPIC,
@@ -157,6 +157,6 @@ public class RabbitMQListing {
             ))
     public void process(String msg) {
         log.info("消费者：<<<<===MqReceiver===>>>myQueue:{}",msg);
-    }
+    }*/
 }
 
