@@ -71,4 +71,17 @@ public class ItemModel implements Serializable {
         this.price = price;
         this.images = images;
     }
+
+
+    @Override
+    public String toString() {
+        return "ItemModel{" +
+                "id='" + id + '\'' +
+                ", title='" + title + '\'' +
+                ", category='" + category + '\'' +
+                ", brand='" + brand + '\'' +
+                ", price=" + price +
+                ", images='" + images + '\'' +
+                '}';
+    }
 }
